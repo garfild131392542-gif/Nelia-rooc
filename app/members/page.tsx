@@ -9,15 +9,15 @@ export default async function MembersPage() {
   // Fetch all profiles
   const { data: profiles, error } = await supabase
     .from('profiles')
-    .select('id, display_name, job_name, pvp_reduc, pvp_dmg, p_def, m_def')
+    // 👇 แก้ไขบรรทัดนี้ ให้มีข้อมูลครบทุกตัว 👇
+    .select('id, display_name, job_name, pvp_reduc, pvp_dmg, p_def, m_def, p_atk, m_atk, p_dmg, m_dmg, p_reduc, m_reduc')
     .order('pvp_dmg', { ascending: false })
-
   if (error) {
     return <div className="p-8 text-red-500">Error loading leaderboard.</div>
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-full mx-auto px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">รายชื่อสมาชิกในกิล</h1>
       <div>
 
